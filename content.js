@@ -1,10 +1,10 @@
 (function () {
   function watch(el, cb) {
-    var observer = new MutationObserver(callback);
-    observer.observe(el, cb);
+    var observer = new MutationObserver(cb);
+    observer.observe(el, { attributes: true, childList: true, subtree: true });
   }
 
-  function addLink(el) {
+  function addLink() {
     if (document.getElementById("prhero-pr-link")) {
       return;
     }
@@ -25,5 +25,6 @@
   var el = document.querySelectorAll('.tabnav-pr .tabnav-tabs')[0];
   if (el) {
     watch(el, addLink);
+    addLink();
   }
 })();
